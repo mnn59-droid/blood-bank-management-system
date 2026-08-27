@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(
+        180deg,
+        #f8fafc 0%,
+        #f1f5f9 40%,
+        #e2e8f0 100%
+    );
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    animation: pageFade 0.6s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* BACKGROUND */
+.bg-layer {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(220, 38, 38, 0.12), transparent 18%),
+        radial-gradient(circle at 85% 75%, rgba(239, 68, 68, 0.10), transparent 16%),
+        radial-gradient(circle at 70% 20%, rgba(0, 0, 0, 0.03), transparent 20%);
+    z-index: 0;
+}
+
+.bg-layer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(239, 68, 68, 0.06), transparent 60%);
+}
+
+.bg-layer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+/* FLOATING CIRCLES */
+.drop {
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(248,113,113,0.55), rgba(127,29,29,0.18));
+    filter: blur(2px);
+    opacity: 0.12;
+    animation: floatDrop 10s ease-in-out infinite;
+    z-index: 0;
+}
+
+.drop:nth-of-type(2) {
+    width: 90px;
+    height: 90px;
+    top: 10%;
+    left: 8%;
+}
+
+.drop:nth-of-type(3) {
+    width: 60px;
+    height: 60px;
+    bottom: 18%;
+    right: 10%;
+    animation-delay: -3s;
+}
+
+.drop:nth-of-type(4) {
+    width: 40px;
+    height: 40px;
+    top: 60%;
+    left: 16%;
+    animation-delay: -5s;
+}
+
+.drop:nth-of-type(5) {
+    width: 70px;
+    height: 70px;
+    top: 24%;
+    right: 14%;
+    animation-delay: -2s;
+}
+
+@keyframes floatDrop {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-18px) scale(1.06); }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes pageFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* MAIN CARD */
+.login-card {
+    position: relative;
+    z-index: 2;
+    width: min(92vw, 520px);
+    max-width: 520px;
+    padding: 42px 38px 32px;
+    border-radius: 26px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(0,0,0,0.05);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    animation: fadeIn 0.8s ease;
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.14),
+        0 0 0 1px rgba(255,255,255,0.45) inset,
+        inset 0 1px 0 rgba(255,255,255,0.65);
+    transition: all 0.25s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 30px 70px rgba(0,0,0,0.18),
+        0 0 0 1px rgba(255,255,255,0.45) inset;
+}
+
+/* LOGO AREA */
+.logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.logo-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #b91c1c, #ef4444);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    box-shadow: 0 10px 24px rgba(185, 28, 28, 0.22);
+    flex-shrink: 0;
+}
+
+.logo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    line-height: 1;
+    color: #111827;
+}
+
+.logo-sub {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+    letter-spacing: 0.8px;
+}
+
+/* STATUS */
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
+}
+
+.status-text {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.divider {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 18px 0 22px;
+}
+
+.card-heading {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #6b7280;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+/* BUTTONS */
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 15px 16px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #111827;
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.22s ease;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: rgba(0,0,0,0.07);
+    border-color: rgba(0,0,0,0.10);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+.nav-btn:active {
+    transform: scale(0.97);
+}
+
+.nav-btn.primary {
+    background: linear-gradient(135deg, #b91c1c, #ef4444);
+    color: white;
+    border-color: transparent;
+    box-shadow:
+        0 12px 24px rgba(185, 28, 28, 0.22),
+        0 0 14px rgba(239, 68, 68, 0.18);
+}
+
+.nav-btn.primary:hover {
+    background: linear-gradient(135deg, #991b1b, #dc2626);
+}
+
+.btn-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.nav-btn.primary .btn-icon {
+    background: rgba(255,255,255,0.18);
+}
+
+.btn-arrow {
+    margin-left: auto;
+    color: rgba(17, 24, 39, 0.55);
+    font-size: 18px;
+}
+
+.nav-btn.primary .btn-arrow {
+    color: rgba(255,255,255,0.75);
+}
+
+/* FOOTER LINK */
+.setup-link {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.setup-link:hover {
+    color: #111827;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    body {
+        padding: 0;
+    }
+
+    .login-card {
+        width: min(92vw, 420px);
+        padding: 30px 22px 24px;
+        border-radius: 20px;
+    }
+
+    .logo-title {
+        font-size: 24px;
+    }
+
+    .nav-btn {
+        padding: 14px;
+        font-size: 14px;
+    }
+}
