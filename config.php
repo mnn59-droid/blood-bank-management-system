@@ -1,25 +1,20 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+$host = getenv('DB_HOST');
+$user = getenv('DB_USER');
+$password = getenv('DB_PASSWORD');
+$database = getenv('DB_NAME');
+$port = getenv('DB_PORT') ?: 3306;
 
-$host = "127.0.0.1";
-$user = "root";
-$password = "";
-$database = "bloodbank_db";
-
-$conn = mysqli_connect($host, $user, $password, $database);
+$conn = mysqli_connect(
+    $host,
+    $user,
+    $password,
+    $database,
+    (int)$port
+);
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-if (!function_exists('e')) {
-    function e($value) {
-        return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
-    }
+    die("Database connection failed.");
 }
 ?>
