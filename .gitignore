@@ -3,3 +3,4 @@
 /vendor/
 .env
 config/database.php
+config.local.php
